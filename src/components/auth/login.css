@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('http://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+*{
+    @apply m-0 p-0  box-border;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    @apply flex justify-center items-center min-h-screen bg-blue-500;
+    transition: 0.3s; 
+}
+.container{
+    @apply relative w-[800px] h-[500px] m-5 bg-yellow-400
+}
