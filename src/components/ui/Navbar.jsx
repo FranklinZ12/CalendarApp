@@ -57,6 +57,7 @@ const Navbar = () => {
                                                 )}
                                                 aria-current={item.current ? 'page' : undefined}
                                             >
+                                                {item.name === 'Salir' ? <i class="fas fa-sign-out-alt icon"></i> : ''}
                                                 {item.name}
                                             </a>
                                         ))}

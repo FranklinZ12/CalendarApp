@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.calendar-screen{
+    @apply flex h-screen;
+    flex-flow: column;
+}
+
+.rbc-calendar{
+    @apply h-full;
+}
