@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.disclosure{
+    @apply bg-gray-800;
+}
+
+.disclosure .div1{
+    @apply max-w-7xl mx-auto px-2 sm:px-6 lg:px-8;
+}
+
+.disclosure .div1 .div2{
+    @apply relative flex items-center justify-between h-16
+}
+
+.disclosure .div1 .div2 .div3{
+    @apply absolute inset-y-0 left-0 flex items-center sm:hidden;
+}
+
+.disclosure .disclosure-button{
+    @apply inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white;
+}
+
+.disclosure-button span{
+    @apply sr-only;
+}
+
+.disclosure-button .xicon{
+    @apply block h-6 w-6;
+}
+
+.disclosure-button .menuIcon{
+    @apply block h-6 w-6;
+}
+
+.disclosure .div4{
+    @apply flex-1 flex items-center justify-center sm:items-stretch sm:justify-start;
+}
+
+.div4 .div4-1{
+    @apply flex-shrink-0 flex items-center
+}
+
+.div4 .logo {
+    @apply block lg:hidden h-8 w-auto;
+}
+
+.div4 .logo2{
+    @apply hidden lg:block h-8 w-auto; 
+}
+
+.div4 .div4-2{
+    @apply hidden sm:w-full sm:flex sm:ml-6 sm:items-center sm:justify-center;
+}
+
+.div4-2-containter{
+    @apply  flex space-x-4 w-1/2 justify-evenly;
+}
+
+.item-current1{
+    @apply bg-gray-900 text-white;
+}
+
+.item-current2{
+    @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+}
+
+.item-current2-1{
+    @apply px-3 py-2 rounded-md text-sm font-medium;
+}
+
+.disclosure .div5{
+    @apply absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0;
+}
+
+.div5 .menu{
+    @apply ml-3 relative;
+}
+
+.menu .menu-button{
+    @apply bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white;
+}
+
+.menu .menu-button span{
+    @apply sr-only;
+}
+
+.menu .menu-button img{
+    @apply h-8 w-8 rounded-full;
+}
+
+.disclosure-panel{
+    @apply sm:hidden;
+}
+
+.disclosure-panel .panel{
+    @apply px-2 pt-2 pb-3 space-y-1;
+}
+
+.panel .item-1{
+    @apply bg-gray-900 text-white;
+}
+
+.panel .item-2{
+    @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+}
+
+.panel .item2-1{
+    @apply block px-3 py-2 rounded-md text-base font-medium;
+}
