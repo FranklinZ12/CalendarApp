@@ -1,16 +1,112 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('http://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
-*{
-    @apply m-0 p-0  box-border;
-    font-family: 'Poppins', sans-serif;
-}
 
-body{
-    @apply flex justify-center items-center min-h-screen bg-blue-500;
+.bodyLogin{
+    @apply flex justify-center items-center min-h-screen bg-blue-500 ; 
     transition: 0.3s; 
 }
+
+.bodyLogin.active{
+    @apply bg-red-500
+}
+
 .container{
-    @apply relative w-[800px] h-[500px] m-5 bg-yellow-400
+    @apply relative w-[800px] h-[500px] m-5;
+}
+
+.blueBg{
+    @apply absolute top-10 w-full h-[420px] flex justify-center items-center;
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 5px 45px rgba(0,0,0,.15);
+}
+
+.blueBg .box{
+    @apply relative w-1/2 h-full flex justify-center items-center flex-col;
+}
+
+.blueBg .box h2{
+   @apply text-white text-[1.2em] font-medium mb-[10px];
+}
+
+.blueBg .box button{
+    @apply cursor-pointer px-5 py-[10px] bg-white text-black text-base font-medium border-none
+}
+
+.formBx{
+    @apply absolute top-0 left-0 w-1/2 h-full bg-white 
+    z-[1000] flex justify-center items-center overflow-hidden;
+    box-shadow: 0 5px 45px rgba(0,0,0,0.25);
+    transition: 0.5s ease-in-out;
+}
+
+.formBx.active{
+    @apply left-1/2;
+}
+
+.formBx .form{
+    @apply absolute left-0 w-full p-[50px];
+    transition: 0.5s;
+}
+
+.formBx .signinForm{
+    @apply delay-[250ms];
+}
+
+.formBx.active .signinForm{
+    @apply -left-full delay-[0s];
+}
+
+.formBx .signupForm{
+    @apply left-full delay-[0s];
+}
+
+.formBx.active .signupForm{
+    @apply left-0 delay-[250ms];
+}
+
+.formBx .form form{
+    @apply w-full flex  flex-col;
+}
+
+.formBx .form form h3{
+    @apply text-gray-700 text-[1.5em] mb-5 font-medium;
+}
+
+.formBx .form form Input{
+    @apply w-full mb-5 p-[10px] outline-none text-base border-2 border-gray-500 border-solid
+}
+
+.formBx .form form Input[type="submit"]{
+    @apply bg-blue-500 border-none text-white max-w-[100px] cursor-pointer
+}
+
+.formBx.active .signupForm Input[type="submit"]{
+    @apply bg-red-500 ;
+}
+
+@media (max-width: 991px){
+    .container{
+        @apply max-w-[400px] h-[650px] flex justify-center items-center;
+    }
+
+    .container .blueBg{
+        @apply top-0 h-full;
+    }
+
+    .formBx{
+        @apply w-full h-[500px] top-0 shadow-none;
+    }
+
+    .blueBg .box{
+        @apply absolute w-full h-[150px] bottom-0;
+    }
+
+    .box.signin{
+        @apply top-0;
+    }
+    
+    .formBx.active{
+        @apply left-0 top-[150px]
+    }
 }
