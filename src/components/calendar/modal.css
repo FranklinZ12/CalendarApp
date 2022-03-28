@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Modal */
+.ReactModalPortal > div{
+    @apply opacity-0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+    @apply items-center flex justify-center z-[999];
+    transition: opacity .2s ease-in-out;
+}
+
+.modal-fondo {
+    @apply bottom-0 left-0 right-0 top-0 fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+    @apply opacity-100;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+    @apply opacity-0;
+}
+
+.modal {
+    @apply bg-white rounded inline max-h-[620px] max-w-[500px] outline-none p-[10px];
+    color: rgb(51, 51, 51);
+}

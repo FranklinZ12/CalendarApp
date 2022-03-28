@@ -18,7 +18,7 @@ const Login = () => {
     }
     return (
         <div className={`bodyLogin ${isActive ? 'active' : ''}`}>
-            <div className="container">
+            <div className="containerL">
                 <div className="blueBg">
                     <div className="box signin">
                         <h2>¿Ya tienes una cuenta?</h2>

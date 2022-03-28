@@ -11,7 +11,7 @@
     @apply bg-red-500
 }
 
-.container{
+.containerL{
     @apply relative w-[800px] h-[500px] m-5;
 }
 
@@ -86,11 +86,11 @@
 }
 
 @media (max-width: 991px){
-    .container{
+    .containerL{
         @apply max-w-[400px] h-[650px] flex justify-center items-center;
     }
 
-    .container .blueBg{
+    .containerL .blueBg{
         @apply top-0 h-full;
     }
 
