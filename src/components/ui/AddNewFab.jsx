@@ -9,12 +9,12 @@ const AddNewFab = () => {
         dispatch(uiOpenModal())
     }
     return (
-        <buttons
+        <button
             className="btn btn-primary fab"
             onClick={handleClickNew}
         >
             <i className="fas fa-plus"></i>
-        </buttons>
+        </button>
     )
 }
 

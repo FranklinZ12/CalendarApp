@@ -1,12 +1,17 @@
-import Modal from 'react-modal';
-import './modal.css';
-import moment from 'moment';
-import DatePicker from 'react-datetime';
-import 'react-datetime/css/react-datetime.css';
-import { useState } from 'react';
-import Swal from 'sweetalert2';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+import moment from 'moment';
+import Modal from 'react-modal';
+import DateTimePicker from 'react-datetime-picker';
+import Swal from 'sweetalert2';
+
+import './modal.css';
+import './datePicker.css';
+
 import { uiCloseModal } from 'actions/ui';
+import { eventAddNew, eventUpdated, eventClearActiveEvent } from 'actions/events';
+
 
 const customStyles = {
     content: {
@@ -23,20 +28,32 @@ Modal.setAppElement('#root');
 const now = moment().minutes(0).seconds(0).add(1, 'hours');
 const nowPlus1 = now.clone().add(1, 'hours');
 
+const initEvent = {
+    title: '',
+    notes: '',
+    start: now.toDate(),
+    end: nowPlus1.toDate(),
+};
+
 const CalendarModal = () => {
     const { modalOpen } = useSelector(state => state.ui);
+    const { activeEvent } = useSelector(state => state.calendar);
     const [dateStart, setDateStart] = useState(now.toDate());
     const [dateEnd, setDateEnd] = useState(nowPlus1.toDate());
     const dispatch = useDispatch();
-    const [formValues, setFormValues] = useState({
-        title: 'Evento',
-        notes: '',
-        start: now.toDate(),
-        end: nowPlus1.toDate(),
-    });
+    const [formValues, setFormValues] = useState(initEvent);
     const [titleValid, setTitleValid] = useState(true)
 
     const { title, notes, start, end } = formValues;
+
+    useEffect(() => {
+        if (activeEvent) {
+            setFormValues(activeEvent);
+        } else {
+            setFormValues(initEvent);
+        }
+    }, [activeEvent, setFormValues])
+
 
     const handleInputChange = ({ target }) => {
         setFormValues({
@@ -47,6 +64,8 @@ const CalendarModal = () => {
 
     const closeModal = () => {
         dispatch(uiCloseModal());
+        dispatch(eventClearActiveEvent());
+        setFormValues(initEvent);
     };
 
     const handleStartDateChange = (date) => {
@@ -57,7 +76,7 @@ const CalendarModal = () => {
         });
     };
 
-    const handleEndtDateChange = (date) => {
+    const handleEndDateChange = (date) => {
         setDateEnd(date);
         setFormValues({
             ...formValues,
@@ -78,6 +97,19 @@ const CalendarModal = () => {
             return setTitleValid(false);
         }
 
+        if (activeEvent) {
+            dispatch(eventUpdated(formValues));
+        } else {
+            dispatch(eventAddNew({
+                ...formValues,
+                id: new Date().getTime(),
+                user: {
+                    _id: '123',
+                    name: 'Juan',
+                }
+            }));
+        }
+
         setTitleValid(true)
         closeModal();
     }
@@ -96,39 +128,31 @@ const CalendarModal = () => {
             className="modal"
             overlayClassName="modal-fondo"
         >
-            <h1 className="title-modal"> Nuevo evento </h1>
+            <h1 className="title-modal"> {(activeEvent) ? 'Editar evento' : 'Nuevo evento'} </h1>
             <hr className="separador" />
             <form
                 onSubmit={handleSubmitForm}
                 className="container">
                 <div className="form-group">
                     <label>Fecha y hora inicio</label>
-                    <DatePicker
-                        inputProps={{
-                            style: { width: 250, background: 'white', color: 'black' }
-                        }}
-                        value={dateStart}
+                    <DateTimePicker
                         onChange={handleStartDateChange}
-                        dateFormat="DD-MM-YYYY"
-                        timeFormat="hh:mm A"
-                        closeOnSelect={true}
-                        closeOnClickOutside={true}
-
+                        value={dateStart}
+                        className="form-control"
+                        format="y-MM-dd h:mm:ss a"
+                        amPmAriaLabel="Select AM/PM"
                     />
                 </div>
 
                 <div className="form-group">
                     <label>Fecha y hora fin</label>
-                    <DatePicker
-                        inputProps={{
-                            style: { width: 250, background: 'white', color: 'black' }
-                        }}
+                    <DateTimePicker
+                        onChange={handleEndDateChange}
                         value={dateEnd}
-                        onChange={handleEndtDateChange}
-                        dateFormat="DD-MM-YYYY"
-                        timeFormat="hh:mm A"
-                        closeOnSelect={true}
-                        closeOnClickOutside={true}
+                        minDate={dateStart}
+                        className="form-control"
+                        format="y-MM-dd h:mm:ss a"
+                        amPmAriaLabel="Select AM/PM"
                         isValidDate={valid}
                     />
                 </div>
