@@ -29,3 +29,11 @@
     @apply bg-white rounded inline max-h-[620px] max-w-[500px] outline-none p-[10px];
     color: rgb(51, 51, 51);
 }
+
+.title-modal{
+    @apply text-2xl text-center font-medium;
+}
+
+.separador{
+    @apply mx-auto my-2 w-full border-b-2 border-gray-300;
+}
