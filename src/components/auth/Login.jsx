@@ -1,9 +1,22 @@
+import { startLogin } from 'actions/auth';
 import Input from 'components/ui/Input';
+import { useForm } from 'hooks/useForm';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './login.css';
 
 const Login = () => {
     const [isActive, setIsctive] = useState();
+    const dispatch = useDispatch();
+
+    const initialLoginValues = {
+        lEmail: 'franklin@gmail.com',
+        lPassword: '123456',
+    }
+
+    const [formLoginValues, handleLoginInputChange, reset] = useForm(initialLoginValues);
+
+    const { lEmail, lPassword } = formLoginValues;
 
     const handleShowSigin = () => {
         // const div = formBx.current;
@@ -16,6 +29,12 @@ const Login = () => {
         // div.className = 'formBx'
         setIsctive(false);
     }
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        dispatch(startLogin(lEmail, lPassword));
+    }
+
     return (
         <div className={`bodyLogin ${isActive ? 'active' : ''}`}>
             <div className="containerL">
@@ -38,10 +57,26 @@ const Login = () => {
                 <div className={`formBx ${isActive ? 'active' : ''}`}
                 >
                     <div className="form signinForm">
-                        <form>
+                        <form onSubmit={handleLogin}>
                             <h3>Iniciar sesion</h3>
-                            <Input type="text" placeholder='Correo...' />
-                            <Input type="password" placeholder='Contraseña...' />
+                            <Input
+                                type="text"
+                                placeholder='Correo...'
+                                name='lEmail'
+                                value={lEmail}
+                                defaultValue={lEmail}
+                                onChange={handleLoginInputChange}
+                                required
+                            />
+                            <Input
+                                type="password"
+                                placeholder='Contraseña...'
+                                name='lPassword'
+                                value={lPassword}
+                                defaultValue={lPassword}
+                                onChange={handleLoginInputChange}
+                                required
+                            />
                             <Input type="submit" value='Login' />
                         </form>
                     </div>
