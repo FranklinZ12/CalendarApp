@@ -10,8 +10,7 @@ import './modal.css';
 import './datePicker.css';
 
 import { uiCloseModal } from 'actions/ui';
-import { eventAddNew, eventUpdated, eventClearActiveEvent } from 'actions/events';
-
+import { eventClearActiveEvent, eventStartAddNew, eventStartUpdate } from 'actions/events';
 
 const customStyles = {
     content: {
@@ -98,16 +97,9 @@ const CalendarModal = () => {
         }
 
         if (activeEvent) {
-            dispatch(eventUpdated(formValues));
+            dispatch(eventStartUpdate(formValues));
         } else {
-            dispatch(eventAddNew({
-                ...formValues,
-                id: new Date().getTime(),
-                user: {
-                    _id: '123',
-                    name: 'Juan',
-                }
-            }));
+            dispatch(eventStartAddNew(formValues));
         }
 
         setTitleValid(true)

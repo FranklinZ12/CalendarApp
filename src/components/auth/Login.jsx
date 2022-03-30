@@ -14,8 +14,7 @@ const Login = () => {
     const initialLoginValues = {
         lEmail: 'franklin@gmail.com',
         lPassword: '123456',
-    }
-
+    };
 
     const initialRegisterValues = {
         rName: 'fran',
