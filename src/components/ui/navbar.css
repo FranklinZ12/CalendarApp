@@ -6,6 +6,10 @@
     @apply bg-gray-800;
 }
 
+.disclosure a{
+    @apply no-underline;
+}
+
 .disclosure .div1{
     @apply max-w-7xl mx-auto px-2 sm:px-6 lg:px-8;
 }

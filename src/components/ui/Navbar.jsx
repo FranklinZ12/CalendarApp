@@ -1,19 +1,26 @@
 import { Disclosure, Menu } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import { startLogout } from 'actions/auth';
 import logo from 'media/calendar.png'
+import { useDispatch, useSelector } from 'react-redux';
 import './navbar.css';
-
-
-const navigation = [
-    { name: 'Pedro', href: '#', current: true },
-    { name: 'Salir', href: '#', current: false },
-];
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 const Navbar = () => {
+    const { name } = useSelector(state => state.auth);
+    const dispatch = useDispatch();
+    const navigation = [
+        { name: name, href: '#', current: false },
+        { name: 'Salir', href: '#', current: false },
+    ];
+
+    const handleLogout = () => {
+        dispatch(startLogout())
+        //falta agregar onClick para handleLogout en el boton salir
+    };
     return (
         <Disclosure as="nav" className="disclosure">
             {({ open }) => (
@@ -94,6 +101,7 @@ const Navbar = () => {
                                         'item2-1'
                                     )}
                                     aria-current={item.current ? 'page' : undefined}
+
                                 >
                                     {item.name}
                                 </Disclosure.Button>
