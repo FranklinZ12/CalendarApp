@@ -1,26 +1,17 @@
 import { Disclosure, Menu } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { startLogout } from 'actions/auth';
-import logo from 'media/calendar.png'
 import { useDispatch, useSelector } from 'react-redux';
 import './navbar.css';
-
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
 
 const Navbar = () => {
     const { name } = useSelector(state => state.auth);
     const dispatch = useDispatch();
-    const navigation = [
-        { name: name, href: '#', current: false },
-        { name: 'Salir', href: '#', current: false },
-    ];
 
     const handleLogout = () => {
-        dispatch(startLogout())
-        //falta agregar onClick para handleLogout en el boton salir
+        dispatch(startLogout());
     };
+
     return (
         <Disclosure as="nav" className="disclosure">
             {({ open }) => (
@@ -40,34 +31,22 @@ const Navbar = () => {
                             </div>
                             <div className="div4">
                                 <div className="div4-1">
-                                    <img
-                                        className="logo"
-                                        src={logo}
-                                        alt="Calendar"
-                                    />
-                                    <img
-                                        className="logo2"
-                                        src={logo}
-                                        alt="Calendar"
-                                    />
-                                    <span>Calendar</span>
+                                    <i
+                                        className="logo far fa-calendar-alt"
+                                    ></i>
+                                    <span>Calendar App</span>
                                 </div>
                                 <div className="div4-2">
                                     <div className="div4-2-containter">
-                                        {navigation.map((item) => (
-                                            <a
-                                                key={item.name}
-                                                href={item.href}
-                                                className={classNames(
-                                                    item.current ? 'item-current1' : 'item-current2',
-                                                    'item-current2-1'
-                                                )}
-                                                aria-current={item.current ? 'page' : undefined}
-                                            >
-                                                {item.name === 'Salir' ? <i className="fas fa-sign-out-alt icon"></i> : ''}
-                                                {item.name}
-                                            </a>
-                                        ))}
+                                        <span className="item.current item-current2-1">{name}</span>
+                                        <button
+                                            onClick={handleLogout}
+                                            className="item-current1 item-current2-1"
+                                        >
+                                            <i className="fas fa-sign-out-alt icon"></i>
+                                            Salir
+                                        </button>
+
                                     </div>
                                 </div>
                             </div>
@@ -91,21 +70,20 @@ const Navbar = () => {
 
                     <Disclosure.Panel className="diclosure-panel">
                         <div className="panel">
-                            {navigation.map((item) => (
-                                <Disclosure.Button
-                                    key={item.name}
-                                    as="a"
-                                    href={item.href}
-                                    className={classNames(
-                                        item.current ? 'item-1' : 'item-2',
-                                        'item2-1'
-                                    )}
-                                    aria-current={item.current ? 'page' : undefined}
-
+                            <Disclosure.Button
+                                className='item-1 item2-1'
+                            >
+                                <span>{name}</span>
+                            </Disclosure.Button>
+                            <Disclosure.Button
+                                className='item-2 item2-1'
+                            >
+                                <button
+                                    onClick={handleLogout}
                                 >
-                                    {item.name}
-                                </Disclosure.Button>
-                            ))}
+                                    Salir
+                                </button>
+                            </Disclosure.Button>
                         </div>
                     </Disclosure.Panel>
                 </>
