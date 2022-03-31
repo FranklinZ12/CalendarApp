@@ -62,12 +62,13 @@ const eventUpdated = (event) => ({
 
 export const eventStartDelete = () => {
     return async (dispatch, getState) => {
-        const { active } = getState().events;
+        const { id } = getState().calendar.activeEvent;
         try {
-            const resp = await fetchConToken(`/events/${active.id}`, {}, 'DELETE');
+            const resp = await fetchConToken(`/events/${id}`, {}, 'DELETE');
             const body = await resp.json();
             if (body.ok) {
-                dispatch(eventDeleted(active.id));
+                dispatch(eventDeleted());
+                Swal.fire('Eliminado', 'El evento ha sido eliminado', 'success');
             } else {
                 Swal.fire('Error', body.msg, 'error');
             }

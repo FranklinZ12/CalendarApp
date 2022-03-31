@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.fab-danger{
-    @apply bottom-6 left-14 fixed;
+.fab-danger {
+    @apply bottom-6 left-14 fixed z-50;
 }
