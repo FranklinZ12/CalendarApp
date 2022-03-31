@@ -12,7 +12,7 @@ const Login = () => {
     const dispatch = useDispatch();
 
     const initialLoginValues = {
-        lEmail: 'franklin@gmail.com',
+        lEmail: 'franklinq@gmail.com',
         lPassword: '123456',
     };
 

@@ -1,8 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 /*FABS*/
-.fab{
-    @apply  bottom-6 right-6 fixed text-3xl;
+.fab {
+    @apply bottom-6 right-6 fixed text-3xl z-50;
     border-radius: 100%;
 }

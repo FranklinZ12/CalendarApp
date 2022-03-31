@@ -50,10 +50,10 @@ const CalendarScreen = () => {
         dispatch(eventClearActiveEvent());
     };
 
-    const eventStyleGetter = (event, start, end, isSelected) => {
+    const eventStyleGetter = (event) => {
 
         const style = {
-            backgroundColor: (uid === event.user._id) ? '#367CF7' : '#465560',
+            backgroundColor: (uid === event.user._id) ? '#367CF7' : 'transparent',
             borderRadius: '0px',
             opacity: 0.8,
             display: 'block',
