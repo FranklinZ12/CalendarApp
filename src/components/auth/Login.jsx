@@ -91,7 +91,7 @@ const Login = () => {
                             <h3>Resgistrate</h3>
                             <Input
                                 type="text"
-                                placeholder='Primer nombre...'
+                                placeholder='Nombres...'
                                 name={rName} 
                                 value={rName}
                                 defaultValue={rName}
