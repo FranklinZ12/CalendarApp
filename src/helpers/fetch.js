@@ -15,8 +15,6 @@ const fetchSinToken = (endpoint, data, method = 'GET') => {
             body: JSON.stringify(data)
         })
     }
-
-
 }
 
 const fetchConToken = (endpoint, data, method = 'GET') => {
