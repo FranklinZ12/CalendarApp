@@ -38,8 +38,9 @@ const Login = () => {
         e.preventDefault();
         if (rPassword1 !== rPassword2) {
             Swal.fire('Error', 'Las contraseñas no coinciden', 'error');
+        }else{
+            dispatch(startRegister(rEmail, rPassword1, rName));
         }
-        dispatch(startRegister(rEmail, rPassword1, rName));
     }
 
     return (
@@ -64,66 +65,50 @@ const Login = () => {
                 <div className={`formBx ${isActive ? 'active' : ''}`}
                 >
                     <div className="form signinForm">
-                        <form onSubmit={handleLogin}>
+                        <form onSubmit={handleLogin} onChange={handleLoginInputChange}>
                             <h3>Iniciar sesion</h3>
                             <Input
                                 type="text"
                                 placeholder='Correo...'
                                 name='lEmail'
-                                value={lEmail}
-                                onChange={handleLoginInputChange}
-                                required = "required"
+                                required = {true}
                             />
                             <Input
                                 type="password"
                                 placeholder='Contraseña...'
                                 name='lPassword'
-                                value={lPassword}
-                                onChange={handleLoginInputChange}
-                                required = "required"
+                                required = {true}
                             />
                             <Input type="submit" value='Login' />
                         </form>
                     </div>
 
                     <div className="form signupForm">
-                        <form onSubmit={handleRegister}>
+                        <form onSubmit={handleRegister} onChange={handleRegisterInputChange}>
                             <h3>Resgistrate</h3>
                             <Input
                                 type="text"
-                                placeholder='Nombres...'
-                                name={rName} 
-                                value={rName}
-                                defaultValue={rName}
-                                onChange={handleRegisterInputChange}
-                                required = "required"
+                                placeholder='Primer nombre...'
+                                name='rName'                         
+                                required = {true}
                             />
                             <Input
                                 type="text"
                                 placeholder='Correo...'
-                                name={rEmail} 
-                                value={rEmail}
-                                defaultValue={rEmail}
-                                onChange={handleRegisterInputChange}
-                                required = "required"
+                                name='rEmail'
+                                required 
                                 />
                             <Input
                                 type="password"
                                 placeholder='Contraseña...'
-                                name={rPassword1}
-                                value={rPassword1}
-                                defaultValue={rPassword1}
-                                onChange={handleRegisterInputChange}
-                                required = "required"
+                                name='rPassword1'
+                                required = {true}
                             />
                             <Input
                                 type="password"
                                 placeholder='Repita la contraseña...'
-                                name={rPassword2} 
-                                value={rPassword2}
-                                defaultValue={rPassword2}
-                                onChange={handleRegisterInputChange}
-                                required = "required" />
+                                name='rPassword2'
+                                required = {true} />
                             <Input
                                 type="submit"
                                 value='Crear'
