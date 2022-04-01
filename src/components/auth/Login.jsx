@@ -11,20 +11,8 @@ const Login = () => {
     const [isActive, setIsctive] = useState();
     const dispatch = useDispatch();
 
-    const initialLoginValues = {
-        lEmail: 'franklinq@gmail.com',
-        lPassword: '123456',
-    };
-
-    const initialRegisterValues = {
-        rName: 'fran',
-        rEmail: 'fran@gmail.com',
-        rPassword1: '123456',
-        rPassword2: '123456',
-    }
-
-    const [formLoginValues, handleLoginInputChange] = useForm(initialLoginValues);
-    const [formRegisterValues, handleRegisterInputChange] = useForm(initialRegisterValues);
+    const [formLoginValues, handleLoginInputChange] = useForm();
+    const [formRegisterValues, handleRegisterInputChange] = useForm();
 
     const { rName, rEmail, rPassword1, rPassword2 } = formRegisterValues;
     const { lEmail, lPassword } = formLoginValues;
@@ -83,18 +71,16 @@ const Login = () => {
                                 placeholder='Correo...'
                                 name='lEmail'
                                 value={lEmail}
-                                defaultValue={lEmail}
                                 onChange={handleLoginInputChange}
-                                required
+                                required = "required"
                             />
                             <Input
                                 type="password"
                                 placeholder='Contraseña...'
                                 name='lPassword'
                                 value={lPassword}
-                                defaultValue={lPassword}
                                 onChange={handleLoginInputChange}
-                                required
+                                required = "required"
                             />
                             <Input type="submit" value='Login' />
                         </form>
@@ -106,18 +92,21 @@ const Login = () => {
                             <Input
                                 type="text"
                                 placeholder='Nombre...'
-                                name={rName} value={rName}
+                                name={rName} 
+                                value={rName}
                                 defaultValue={rName}
                                 onChange={handleRegisterInputChange}
-                                required
+                                required = "required"
                             />
                             <Input
                                 type="text"
                                 placeholder='Correo...'
-                                name={rEmail} value={rEmail}
+                                name={rEmail} 
+                                value={rEmail}
                                 defaultValue={rEmail}
                                 onChange={handleRegisterInputChange}
-                                required />
+                                required = "required"
+                                />
                             <Input
                                 type="password"
                                 placeholder='Contraseña...'
@@ -125,15 +114,16 @@ const Login = () => {
                                 value={rPassword1}
                                 defaultValue={rPassword1}
                                 onChange={handleRegisterInputChange}
-                                required
+                                required = "required"
                             />
                             <Input
                                 type="password"
                                 placeholder='Repita la contraseña...'
-                                name={rPassword2} value={rPassword2}
+                                name={rPassword2} 
+                                value={rPassword2}
                                 defaultValue={rPassword2}
                                 onChange={handleRegisterInputChange}
-                                required />
+                                required = "required" />
                             <Input
                                 type="submit"
                                 value='Crear'

@@ -32,7 +32,7 @@ const CalendarScreen = () => {
     useEffect(() => {
         dispatch(eventStartLoading())
     }, [dispatch])
-
+    
     const onDoubleClick = () => {
         dispatch(uiOpenModal());
     };
@@ -46,14 +46,14 @@ const CalendarScreen = () => {
         localStorage.setItem('lastView', event);
     };
 
-    const onSelectSlot = (event) => {
+    const onSelectSlot = () => {
         dispatch(eventClearActiveEvent());
     };
 
     const eventStyleGetter = (event) => {
 
         const style = {
-            backgroundColor: (uid === event.user._id) ? '#367CF7' : 'transparent',
+            backgroundColor: (uid === event.user._id) ? '#367CF7' : '#898989',
             borderRadius: '0px',
             opacity: 0.8,
             display: 'block',
