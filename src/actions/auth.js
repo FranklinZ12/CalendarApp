@@ -18,7 +18,7 @@ export const startLogin = (email, password) => {
                 name: body.name
             }));
         } else {
-            Swal.fire('Error', body.msg, 'error');
+            Swal.fire('Error','Correo o usuario incorrecto' , 'error');
         }
     }
 }
@@ -27,6 +27,7 @@ export const startRegister = (email, password, name) => {
     return async (dispatch) => {
         const resp = await fetchSinToken('auth/new', { email, password, name }, 'POST');
         const body = await resp.json();
+        console.log(body.errores)
         if (body.ok) {
             localStorage.setItem('token', body.token);
             localStorage.setItem('token-init-date', new Date().getTime());
@@ -35,7 +36,7 @@ export const startRegister = (email, password, name) => {
                 name: body.name
             }));
         } else {
-            Swal.fire('Error', body.msg, 'error');
+            Swal.fire('Error', 'Datos incorrectos', 'error');
         }
     }
 }
